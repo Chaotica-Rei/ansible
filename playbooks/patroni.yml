@@ -1,0 +1,7 @@
+---
+- name: Deploy Patroni
+  hosts: patroni
+  become: true
+
+  roles:
+    - patroni

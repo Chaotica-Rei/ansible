@@ -1,0 +1,7 @@
+---
+- name: Deploy ETCD Cluster
+  hosts: etcd
+  become: true
+
+  roles:
+    - etcd

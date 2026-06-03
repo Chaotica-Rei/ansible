@@ -1,0 +1,19 @@
+---
+- name: Install PostgreSQL
+  apt:
+    name:
+      - postgresql
+      - postgresql-client
+      - python3-psycopg2
+    state: present
+    update_cache: true
+  tags:
+    - db_setup
+
+- name: Stop PostgreSQL
+  systemd:
+    name: postgresql
+    state: stopped
+    enabled: false
+  tags:
+    - db_setup

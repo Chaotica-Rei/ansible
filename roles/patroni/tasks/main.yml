@@ -1,0 +1,26 @@
+---
+- name: Install Patroni
+  apt:
+    name:
+      - patroni
+      - python3-etcd
+    state: present
+    update_cache: true
+  tags:
+    - patroni_setup
+
+- name: Deploy Patroni config
+  template:
+    src: patroni.yml.j2
+    dest: /etc/patroni/config.yml
+  notify: restart patroni
+  tags:
+    - patroni_setup
+
+- name: Enable Patroni
+  systemd:
+    name: patroni
+    enabled: true
+    state: started
+  tags:
+    - patroni_setup
